@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="css/style.min.css?_v=20220519172657">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js?_v=20220519172657"></script>
+   <title>Грищенко Игорь</title>
+</head>
+
+<body>
+   <header class="header">
+   <h1>Задание1</h1>
+   <a href=laba-3.html>Вернуться обратно</a>
+</header>
+   <div class="news grid">
+      <!-- <div class="news__chapter">
+         <h2 class="news__titie">Новый трактор</h2>
+         <picture><source srcset="img/traktor.webp" type="image/webp"><img src="img/traktor.jpg" alt="" class="news__img"></picture>
+         <p class="news__text">Разработали трактор новой модели</p>
+      </div>
+      <div class="news__chapter">
+         <h2 class="news__titie">Старт гонок</h2>
+         <picture><source srcset="img/car.webp" type="image/webp"><img src="img/car.jpg" alt="" class="news__img"></picture>
+         <p class="news__text">В Италии началась формала-1</p>
+      </div>
+      <div class="news__chapter">
+         <h2 class="news__titie">Певец выступает</h2>
+         <picture><source srcset="img/pevec.webp" type="image/webp"><img src="img/pevec.jpg" alt="" class="news__img"></picture>
+         <p class="news__text">В городе выступает певец</p>
+      </div>
+      <div class="news__chapter">
+         <h2 class="news__titie">Новый материал</h2>
+         <picture><source srcset="img/material.webp" type="image/webp"><img src="img/material.jpg" alt="" class="news__img"></picture>
+         <p class="news__text">Ученые открыли новый материал</p>
+      </div>
+      <div class="news__chapter">
+         <h2 class="news__titie">Милое животное</h2>
+         <picture><source srcset="img/animal.webp" type="image/webp"><img src="img/animal.jpg" alt="" class="news__img"></picture>
+         <p class="news__text">Вот вам милое животное</p>
+      </div>-->
+   </div>
+   <button class="news__newchapter">Загрузить еще..</button>
+
+   <script>
+      $(document).ready(function () {
+
+
+         $(window).on('load', function () {
+            $.ajax({
+               url: "getdata3.php",
+               type: "GET",
+               data: ({ kol: 5, tek: 0 }),
+               success: function (response) {
+                  let data = JSON.parse(response);
+                  data.forEach(function (item) {
+                     $(".news").append(`
+                     <div class="news__chapter">
+                        <h2 class="news__titie">${item.title}</h2>
+                        <picture>
+                           <source srcset="img/${item.image}.webp" type="image/webp">
+                           <img src="img/${item.image}.jpg" alt="" class="news__img">
+                           </picture>
+                        <p class="news__text">${item.text}</p>
+                     </div>
+                  `);
+                  });
+               },
+            })
+         });
+
+         $(".news__newchapter").on('click', function () {
+            let tek = $(".news__chapter").length;
+
+            $.ajax({
+               url: "getdata3.php",
+               type: "GET",
+               data: ({ kol: 5, tek: tek }),
+               success: function (response) {
+                  console.log(tek);
+                  let data = JSON.parse(response);
+                  data.forEach(function (item) {
+                     $(".news").append(`
+                     <div class="news__chapter">
+                        <h2 class="news__titie">${item.title}</h2>
+                        <picture>
+                           <source srcset="img/${item.image}.webp" type="image/webp">
+                           <img src="img/${item.image}.jpg" alt="" class="news__img">
+                           </picture>
+                        <p class="news__text">${item.text}</p>
+                     </div>
+                  `);
+                  });
+               },
+            })
+         });
+
+      });
+
+   </script>
+   
+   <script src="js/app.min.js?_v=20220519172657"></script>
+</body>
+
+</html>

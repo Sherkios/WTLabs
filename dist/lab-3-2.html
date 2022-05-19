@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="css/style.min.css?_v=20220519191841">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js?_v=20220519191841"></script>
+   <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.13.1/themes/base/jquery-ui.css?_v=20220519191841" rel="stylesheet"
+      type="text/css" />
+   <title>Грищенко Игорь</title>
+</head>
+
+<body>
+   <header class="header">
+   <h1>Задание2</h1>
+   <a href=lab-3.html>Вернуться обратно</a>
+</header>
+
+   <div class="writen">
+      <h2>Написанные отзывы</h2>
+      <form action="" class="writen__write">
+         <p>Введите ваше имя</p>
+         <br><input type="text" class="username" id="username" name="username"><br>
+         <p>Введите ваш e-mail</p>
+         <br><input type="text" class="email" id="email" name="email"><br>
+         <p>Введите сообщение</p>
+         <br><input type="text" class="massege" id="massege" name="massege"><br>
+         <input type="button" name="submit" id="submit" value="Отправить">
+      </form>
+   </div>
+
+   <div class="last__reviews">
+      <h2>Предыдущие отзывы</h2>
+   </div>
+   <script>
+      $(document).ready(function () {
+
+
+         $(window).on('load', function () {
+            $.ajax({
+               url: "getdataR3.php",
+               type: "GET",
+               data: ({ kol: 1, tek: 1 }),
+               success: function (response) {
+                  let data = JSON.parse(response);
+                  data.forEach(function (item) {
+                     $(".last__reviews").append(`
+                     <div class="review">
+                        <h2>${item.username}</h2>
+                        <h2>${item.email}</h2>
+                        <p>Написал: ${item.massege}</p>
+                     </div>
+                  `);
+                  });
+               },
+            })
+         });
+
+         $("#submit").on('click', function () {
+            let username = $("#username").val();
+            let email = $("#email").val();
+            let massege = $("#massege").val();
+
+
+            $.ajax({
+               url: "setdataR3.php",
+               type: "POST",
+               data: ({ username: username, email: email, massege: massege }),
+               success: function (response) {
+                  alert(response);
+               },
+            })
+         });
+
+      });
+
+   </script>
+   
+   <script src="js/app.min.js?_v=20220519191841"></script>
+</body>
+
+</html>
