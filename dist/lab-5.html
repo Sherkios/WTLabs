@@ -4,9 +4,9 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="css/style.min.css?_v=20220519225754">
+   <link rel="stylesheet" href="css/style.min.css?_v=20220520025705">
    <link rel="stylesheet" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
-   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.13.1/themes/base/jquery-ui.css?_v=20220519225754"
+   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.13.1/themes/base/jquery-ui.css?_v=20220520025705"
       rel="stylesheet" type="text/css" />
    <title>Грищенко Игорь</title>
 </head>
@@ -18,21 +18,21 @@
 </header>
    <table>
       <tr>
-         <td class="fixed" id="cell">Имя1</td>
-         <td class="fixed" id="cell">Фамилия1</td>
+         <td class="cell1" id="cell1">Имя1</td>
+         <td class="cell2" id="cell2">Фамилия1</td>
       </tr>
       <tr>
-         <td class="fixed" id="cell">Имя2</td>
-         <td class="fixed" id="cell">Фамилия2</td>
+         <td class="cell3" id="cell3">Имя2</td>
+         <td class="cell4" id="cell4">Фамилия2</td>
       </tr>
    </table>
    
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js?_v=20220519225754"></script>
-   <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js?_v=20220519225754"></script>
-   <script src="js/app.min.js?_v=20220519225754"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js?_v=20220520025705"></script>
+   <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js?_v=20220520025705"></script>
+   <script src="js/app.min.js?_v=20220520025705"></script>
 
    <script>
-
+      let mass = [["Имя1", "Фамилия1", "Имя2", "Фамилия2"]];
       let editingTd;
       $("table").on("click", function (e) {
          let target = event.target.closest('td');
@@ -44,7 +44,6 @@
          }
 
       });
-      ы
       function makeTdEditable(td) {
          editingTd = {
             elem: td,
@@ -71,6 +70,20 @@
             td.innerHTML = td.firstChild.value;
          } else {
             td.innerHTML = editingTd.data;
+         }
+         console.log(td);
+         if (td.classList.contains("cell1")) {
+            mass.push([td.innerHTML, $(".cell2").text(), $(".cell3").text(), $(".cell4").text()])
+            console.log(mass);
+         } else if (td.classList.contains("cell2")) {
+            mass.push([$(".cell1").text(), td.innerHTML, $(".cell3").text(), $(".cell4").text()])
+            console.log(mass);
+         } else if (td.classList.contains("cell3")) {
+            mass.push([$(".cell1").text(), $(".cell2").text(), td.innerHTML, $(".cell4").text()])
+            console.log(mass);
+         } else {
+            mass.push([$(".cell1").text(), $(".cell2").text(), $(".cell3").text(), td.innerHTML])
+            console.log(mass);
          }
          td.classList.remove('edit-td');
          editingTd = null;
