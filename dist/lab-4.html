@@ -4,10 +4,10 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="css/style.min.css?_v=20220519191841">
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js?_v=20220519191841"></script>
-   <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.13.1/themes/base/jquery-ui.css?_v=20220519191841" rel="stylesheet"
-      type="text/css" />
+   <link rel="stylesheet" href="css/style.min.css?_v=20220519225754">
+   <link rel="stylesheet" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.13.1/themes/base/jquery-ui.css?_v=20220519225754"
+      rel="stylesheet" type="text/css" />
    <title>Грищенко Игорь</title>
 </head>
 
@@ -16,9 +16,98 @@
    <h1>Лабораторная работа 4</h1>
    <a href=index.html>Вернуться обратно</a>
 </header>
+   <div class="container content">
+      <h1>Вариант 8. Перечень товаров</h1>
+      <div id="accordion">
+         <h3>Овощи</h3>
+         <div class="">
+            <p>Помидор</p>
+            <p>Качестова: 1 уровня</p>
+            <p>Дата: 20.02.21</p>
+            <p>Цена: 200 рублей</p>
+         </div>
+         <h3>Фрукт</h3>
+         <div class="">
+            <p>Яблоко</p>
+            <p>Качестова: 1 уровня</p>
+            <p>Дата: 20.02.21</p>
+            <p>Цена: 200 рублей</p>
+         </div>
+         <h3>Одежда</h3>
+         <div class="">
+            <p>Шарф</p>
+            <p>Качестова: 1 уровня</p>
+            <p>Дата: 20.02.21</p>
+            <p>Цена: 200 рублей</p>
+         </div>
+      </div>
+      <div class="container content">
+         <div class="row">
+            <div class="col-md-6">
+               <form class="form-inline">
+                  <div class="form-group">
+                     <label for="start">Начальная цена</label>
+                     <input type="text" name="start" class="form-control" id="start">
+                  </div>
+                  <div class="form-group">
+                     <label for="end">Конечная цена</label>
+                     <input type="text" name="end" class="form-control" id="end">
+                  </div>
+               </form>
+               <br>
+               <div id="slider"></div>
+            </div>
+         </div>
+      </div>
+
+      <div class="modal" id="dialog">
+
+         <p>Выберите категорию</p>
+         <select name="category" id="select">
+            <option value="">Овощи</option>
+            <option value="">Фрукты</option>
+            <option value="">Одежда</option>
+         </select>
+
+         <p>Качество</p>
+         <select name="tier" id="tier">
+            <option value="">1 уровня</option>
+            <option value="">2 уровня</option>
+            <option value="">3 уровня</option>
+         </select>
+
+         <p>Введите название</p>
+         <input type="text">
+
+         <p>Введите дату производства/выпуска</p>
+         <form action="">
+            <div class="form-group">
+               <input type="text" name="date" id="date">
+            </div>
+         </form>
+
+         <p>Введите цену</p>
+         <input type="text" name="" id="price">
+
+         <button id="create">Создать</button>
+      </div>
+
+      <div class="" id="confirm">
+         <h3>Вы уверены?</h3>
+         <button id="yesConfirm">Да</button>
+         <button id="noConfirm">Нет</button>
+      </div>
+
+      <div id="notification">
+         <h2>Новый товар создан</h2>
+         <button id="close">закрыть</button>
+      </div>
+      <button class="newItem" id="open">Добавить новый товар</button>
+   </div>
    
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js?_v=20220519191841"></script>
-   <script src="js/app.min.js?_v=20220519191841"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js?_v=20220519225754"></script>
+   <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js?_v=20220519225754"></script>
+   <script src="js/app.min.js?_v=20220519225754"></script>
 </body>
 
 </html>
